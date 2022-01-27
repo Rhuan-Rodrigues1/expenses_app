@@ -1,32 +1,75 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <base-spinner />
+    <layout-notification />
+    <div class="cotainer-fluid" v-if="isLogged">
+      <div class="row">
+        <div class="col-2 nav-layout">
+          <h1 class="nav-title">Expenses</h1>
+            <layout-navigation/>
+        </div>
+        <div class="col">
+            <router-view/>
+        </div>
+      </div>
     </div>
-    <router-view/>
+
+    <router-view v-else />
   </div>
 </template>
 
-<style lang="scss">
+<script>
+import LayoutNavigation from './components/layouts/LayoutNavigation.vue'
+import BaseSpinner from './components/global/BaseSpinner'
+import LayoutNotification from './components/layouts/LayoutNotification.vue'
+export default {
+  components: {
+    BaseSpinner,
+    LayoutNavigation,
+    LayoutNotification
+  },
+  data () {
+    return {
+      isLogged: false
+    }
+  },
+  mounted () {
+    this.$firebase.auth().onAuthStateChanged(user => {
+      window.uid = user ? user.uid : null
+      this.isLogged = !!user
+
+      if (window.uid) {
+        this.$router.push({ name: 'home' })
+      } else {
+        this.$router.push({ name: 'login' })
+      }
+
+      setTimeout(() => {
+        this.$root.$emit('Spinner::hide')
+      }, 300)
+    })
+  }
+}
+</script>
+
+<style lang="scss" scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--darker);
+  color: var(--light);
 }
 
-#nav {
-  padding: 30px;
+.nav-layout {
+  background: var(--dark-medium);
+  height: 100vh;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.nav-title {
+  font-size: 25px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>
