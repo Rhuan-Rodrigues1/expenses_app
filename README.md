@@ -11,6 +11,13 @@ App seguindo a playlist do Arthur Oliveira para estudar sintaxe básica do Vue.j
 ## Lista dos gastos
 ![Alt text](https://raw.githubusercontent.com/Rhuan-Rodrigues1/expenses_app/main/img/ListGastos.png)
 
+## Oque eu aprendi ?
+
+- [X] Desenvolvimento de SPA
+- [X] Trabalhar com rotas
+- [X] Desenvolvimento com firebase
+- [X] Componentes
+
 ## Project setup
 ```
 yarn install
