@@ -1,5 +1,16 @@
 # expenses
 
+App seguindo a playlist do Arthur Oliveira para estudar sintaxe básica do Vue.js
+
+## Login
+![Alt text](https://raw.githubusercontent.com/Rhuan-Rodrigues1/expenses_app/main/img/Login.png)
+
+## Adicionando Custos
+![Alt text](https://raw.githubusercontent.com/Rhuan-Rodrigues1/expenses_app/main/img/AddCustos.png)
+
+## Lista dos gastos
+![Alt text](https://raw.githubusercontent.com/Rhuan-Rodrigues1/expenses_app/main/img/ListGastos.png)
+
 ## Project setup
 ```
 yarn install
